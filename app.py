@@ -6,7 +6,7 @@ from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
 from models import *
 
-engine = create_engine('sqlite:///bucketlist4.db', echo=True)
+engine = create_engine('sqlite:///test_db', echo=True)
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ def user_exists(email):
         return user
     return False
 
-@app.route('/register', methods=['POST'])
+@app.route('/auth/register', methods=['POST'])
 def register():
     if request.method == 'POST':
         name = request.json['name']
@@ -46,7 +46,7 @@ def register():
 
     
 
-@app.route('/login', methods=['POST'])
+@app.route('/auth/login', methods=['POST'])
 def login():
     if request.method == 'POST':
         email = request.json['email']
