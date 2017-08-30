@@ -4,7 +4,7 @@ from sqlalchemy import Column, Date,DateTime, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
 from flask_bcrypt import Bcrypt
-from app import db
+# from app import db
 
  
 engine = create_engine('sqlite:///test_db', echo=True)
