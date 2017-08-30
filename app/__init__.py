@@ -8,28 +8,26 @@ from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
 from models import *
 
-engine = create_engine('sqlite:///test_db', echo=True)
-
-# local import
 from instance.config import app_config
 
-app = Flask(__name__)
+engine = create_engine('sqlite:///test_db', echo=True)
+
+
+app = Flask(__name__, instance_relative_config=True)
 
 Session = sessionmaker(bind=engine)
 session = Session()
-
-@app.route('/api/v1/')
-
-# initialize sql-alchemy
 db = SQLAlchemy()
+
+# @app.route('/api/v1/')
 
 
 def create_app(config_name):
-    app = FlaskAPI(__name__, instance_relative_config=True)
     app.config.from_object(app_config[config_name])
     app.config.from_pyfile('config.py')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
+    return app
 
 
 def user_exists(email):
