@@ -19,7 +19,7 @@ Session = sessionmaker(bind=engine)
 session = Session()
 db = SQLAlchemy()
 
-# @app.route('/api/v1/')
+@app.route('/api/v1/')
 
 
 def create_app(config_name):
@@ -90,8 +90,8 @@ def bucketlists():
             decoded = jwt.decode(token, 'secret', algorithms=['HS256'])
             created_by = session.query(User).filter(User.id == decoded['id']).first()
             print request.json
-            bucketlist_id = request.json['bucketlist_id']
-            bucketlist = Bucketlist(bucketlist_id, decoded['id'])
+            bucketlist = request.json['bucketlist']
+            bucketlist = Bucketlist(bucketlist, decoded['id'])
             session.add(bucketlist)
             session.commit()
             response = jsonify({
@@ -175,7 +175,7 @@ def bucketlists_items(id):
         session.add(bucketlist_item)
         session.commit()
         response = jsonify({
-            'message': 'bucketlist_item created'
+            'message': 'bucketlist item created'
         })
         response.status_code = 201
         return response
