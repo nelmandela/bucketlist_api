@@ -12,14 +12,13 @@ from instance.config import app_config
 
 engine = create_engine('sqlite:///test_db', echo=True)
 
-
 app = Flask(__name__, instance_relative_config=True)
 
 Session = sessionmaker(bind=engine)
 session = Session()
 db = SQLAlchemy()
 
-@app.route('/api/v1/')
+# @app.route('/api/v1/')
 
 
 def create_app(config_name):
@@ -28,6 +27,7 @@ def create_app(config_name):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
     return app
+
 
 
 def user_exists(email):
