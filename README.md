@@ -1,3 +1,4 @@
+<<<<<<< HEAD
  # Bucketlist API
  
  [![Build Status](https://travis-ci.org/nelmandela/restful_api.svg?branch=master)](https://travis-ci.org/nelmandela/restful_api)
@@ -56,3 +57,6 @@
   Flask
   Flask-RESTful
   Flask-SQLAlchemy
+=======
+[![Build Status](https://travis-ci.org/nelmandela/restful_api.svg?branch=master)](https://travis-ci.org/nelmandela/restful_api)
+>>>>>>> 31a76f8eabc8167f4561d7962a0355171b20f725
