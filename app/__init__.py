@@ -1,23 +1,14 @@
 from flask_api import FlaskAPI
-from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, request, jsonify
 import datetime
 import jwt
 import json
 from sqlalchemy import create_engine, update
-from sqlalchemy.orm import sessionmaker
 from models import *
 
 from instance.config import app_config
 
-engine = create_engine('sqlite:///test_db', echo=True)
-
 app = Flask(__name__, instance_relative_config=True)
-
-Session = sessionmaker(bind=engine)
-session = Session()
-db = SQLAlchemy()
-
 # @app.route('/api/v1/')
 
 
