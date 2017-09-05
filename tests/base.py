@@ -38,5 +38,5 @@ class Base(unittest.TestCase):
 
     def tearDown(self):
         db.drop_all()
-        # os.remove('test_db')
+        os.remove('test.db')
             
