@@ -1,14 +1,17 @@
-from sqlalchemy import *
 from sqlalchemy import create_engine, ForeignKey
 from sqlalchemy import Column, Date,DateTime, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
 from flask_bcrypt import Bcrypt
-# from app import db
+from sqlalchemy.orm import sessionmaker
+from flask_sqlalchemy import SQLAlchemy
 
  
-engine = create_engine('sqlite:///test_db', echo=True)
+engine = create_engine('sqlite:///test.db')
 Base = declarative_base()
+Session = sessionmaker(bind=engine)
+session = Session()
+db = SQLAlchemy()
  
 
 class User(Base):
