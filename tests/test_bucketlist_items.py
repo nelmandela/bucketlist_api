@@ -1,22 +1,27 @@
-# import unittest
-# import json
-# from tests.base import Base
+import unittest
+import json
+from tests.base import Base
 
 
-# class TestBuckelistItems(Base):
-#     def test_create_bucketlist_item(self):
-#         """Test bucketlist item POST request"""
-#         self.client.post('/buckelists',data=json.dumps({"bucketlist_item": "fears"}),headers=self.set_headers())
-#         response = self.client.post('bucketlists/1/items', data=json.dumps({"bucketlist_item": "conquer fear for spiders"}), headers=self.set_headers())
-#         payload = json.loads(response.data.decode())
-#         self.assertEquals(payload["message"], "bucketlist item created")
-#         self.assertEquals(response.status_code, 201)
+class TestBuckelistItems(Base):
+    def test_create_bucketlist_item(self):
+        """Test bucketlist item POST request"""
+        self.client.post('/buckelists',data=json.dumps({"bucketlist_item": "fears"}),headers=self.set_headers())
+        response = self.client.post('bucketlists/1/items', data=json.dumps({"bucketlist_item": "conquer fear for spiders"}), headers=self.set_headers())
+        payload = json.loads(response.data.decode())
+        self.assertEquals(payload["message"], "bucketlist item created")
+        self.assertEquals(response.status_code, 201)
 
-    # def test_get_bucketlist_items(self):
-    #     """Test bucketlist items GET request"""
-    #     results = self.client().get('/bucketlist_items/<id>/items')
-    #     self.assertIn('travel', str(results.data))
-    #     self.assertEqual(results.status_code, 200)
+    def test_gets_all_bucketlist_items(self):
+        self.client.post('/bucketlists/1/items',
+                         data=json.dumps({"bucketlist_item": "sky diving"}),
+                         headers=self.set_headers())
+        response = self.client.get('/bucketlists/1/items',
+                                   headers=self.set_headers())
+        payload = json.loads(response.data.decode())
+        self.assertEquals(len(payload["bucketlist_items"]), 1)
+        self.assertEquals(response.status_code, 200)
+
 
     # def test_get_unavailable_bucketlist_item(self):
     #     """Test unavailable GET request"""
@@ -49,5 +54,5 @@
     # self.assertTrue(response['message'] == 'bucketlist item not found')
 
 
-# if __name__ == "__main__":
-#     unittest.main()
+if __name__ == "__main__":
+    unittest.main()
