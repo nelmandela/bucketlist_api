@@ -42,9 +42,9 @@
 | /api/v1/auth/register/ | POST | FALSE
 | /api/v1/auth/login/ | POST | FALSE
 | /api/v1/bucketlists/ | POST | TRUE
-| /api/v1/bucketlists/<id>/	| GET | TRUE
-| /api/v1/bucketlists/<id>/items/ | POST | TRUE
-| /api/v1/bucketlists/<id>/items/<item_id>/	| PUT,DELETE | TRUE
+| /api/v1/bucketlists/{id}/	| GET | TRUE
+| /api/v1/bucketlists/{id}/items/ | POST | TRUE
+| /api/v1/bucketlists/{id}/items/<item_id>/	| PUT,DELETE | TRUE
 
   
 ## Testing:
